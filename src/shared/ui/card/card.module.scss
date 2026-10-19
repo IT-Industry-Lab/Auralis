@@ -1,0 +1,17 @@
+$card-bg: #171717;
+$card-border: #333333;
+
+.card {
+  background-color: $card-bg;
+  border: 1px solid $card-border;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header {}
+
+.body {}
+
+.footer {}
