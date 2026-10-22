@@ -1,0 +1,107 @@
+$border-color-default: #edf3fa;
+$active-color-circle: #4c4c4c;
+$hover-color-circle: #333333;
+$focus-color-circle: #171717;
+$label-color: #ffffff;
+$label-color-disabled: #8d9094;
+.checkboxWrapper {
+  display: inline-flex;
+  align-items: center;
+}
+.circle {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 47px;
+  height: 47px;
+
+  &:has(.checkbox:focus:not(:disabled)) {
+    background-color: $focus-color-circle;
+    transition: background-color 0.2s ease-out;
+  }
+
+  &:has(.checkbox:hover:not(:disabled)) {
+    background-color: $hover-color-circle;
+    transition: background-color 0.2s ease-out;
+  }
+
+  &:has(.checkbox:active:not(:disabled)) {
+    background-color: $active-color-circle;
+    transition: background-color 0.2s ease-out;
+  }
+
+  &:has(.checkbox:disabled) {
+    pointer-events: none;
+  }
+}
+
+.circle:has(.checkbox:disabled) + .label {
+  color: $label-color-disabled;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  position: relative;
+
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+
+  background-image: url('./checkbox-border.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-image: url('./galka.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+
+    background-image: url('./disable-border.svg');
+
+
+    &:checked,
+    &.checked {
+      background-image: none;
+
+      &::after {
+        background-image: url('./disable-galka.svg');
+      }
+    }
+  }
+}
+
+.checkbox:checked,
+.checkbox.checked {
+  &::after {
+    opacity: 1;
+  }
+}
+
+.label {
+  color: $label-color;
+  margin-left: 2px;
+}
