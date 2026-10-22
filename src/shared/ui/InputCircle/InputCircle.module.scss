@@ -1,0 +1,35 @@
+$border-color-default: #edf3fa;
+$active-color-circle: #4c4c4c;
+$hover-color-circle: #333333;
+$focus-color-circle: #171717;
+$label-color: #ffffff;
+$label-color-disabled: #8d9094;
+
+.circle {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 47px;
+  height: 47px;
+
+  &:has(input:focus:not(:disabled)) {
+    background-color: $focus-color-circle;
+    transition: background-color 0.2s ease-out;
+  }
+
+  &:has(input:hover:not(:disabled)) {
+    background-color: $hover-color-circle;
+    transition: background-color 0.2s ease-out;
+  }
+
+  &:has(input:active:not(:disabled)) {
+    background-color: $active-color-circle;
+    transition: background-color 0.2s ease-out;
+  }
+
+  &:has(input:disabled) {
+    pointer-events: none;
+  }
+}
