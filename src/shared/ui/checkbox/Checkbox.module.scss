@@ -8,40 +8,6 @@ $label-color-disabled: #8d9094;
   display: inline-flex;
   align-items: center;
 }
-.circle {
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  width: 47px;
-  height: 47px;
-
-  &:has(.checkbox:focus:not(:disabled)) {
-    background-color: $focus-color-circle;
-    transition: background-color 0.2s ease-out;
-  }
-
-  &:has(.checkbox:hover:not(:disabled)) {
-    background-color: $hover-color-circle;
-    transition: background-color 0.2s ease-out;
-  }
-
-  &:has(.checkbox:active:not(:disabled)) {
-    background-color: $active-color-circle;
-    transition: background-color 0.2s ease-out;
-  }
-
-  &:has(.checkbox:disabled) {
-    pointer-events: none;
-  }
-}
-
-.circle:has(.checkbox:disabled) + .label {
-  color: $label-color-disabled;
-  cursor: not-allowed;
-  pointer-events: none;
-}
 
 .checkbox {
   appearance: none;
@@ -81,7 +47,6 @@ $label-color-disabled: #8d9094;
     pointer-events: none;
 
     background-image: url('./disable-border.svg');
-
 
     &:checked,
     &.checked {
