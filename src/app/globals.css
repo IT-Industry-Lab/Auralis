@@ -1,3 +1,6 @@
+@import '../shared/styles/palette.css';
+@import '../shared/styles/typography.css';
+
 :root {
   --background: #fff;
   --foreground: #171717;
