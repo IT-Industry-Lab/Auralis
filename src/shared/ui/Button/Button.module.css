@@ -1,0 +1,122 @@
+.button {
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 4px 22px;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  line-height: 1.5;
+  transition: 0.25s;
+}
+
+.primary {
+  background: #397df6;
+}
+
+.primary:hover {
+  background: #73a5ff;
+}
+
+.primary:active {
+  background: #2f68cc;
+}
+
+.primary:focus {
+  border-color: #2f68cc;
+}
+
+.primary:disabled {
+  cursor: not-allowed;
+  color: #8d9094;
+  background: #234e99;
+}
+
+.secondary {
+  color: #ede6e6;
+  background: #333;
+}
+
+.secondary:hover {
+  background: #4c4c4c;
+}
+
+.secondary:active {
+  background: #212121;
+}
+
+.secondary:focus {
+  border-color: #4c8dff;
+}
+
+.secondary:disabled {
+  cursor: not-allowed;
+  color: #8d9094;
+  background: #171717;
+}
+
+.outline {
+  border: 2px solid #397df6;
+  color: #397df6;
+  background: none;
+}
+
+.outline:hover {
+  border-color: #73a5ff;
+  color: #73a5ff;
+  background: none;
+}
+
+.outline:active {
+  border-color: #397df6;
+  background: none;
+}
+
+.outline:focus {
+  border-color: #2f68cc;
+  color: #2f68cc;
+  background: none;
+}
+
+.outline:disabled {
+  cursor: not-allowed;
+  border-color: #234e99;
+  color: #234e99;
+  background: none;
+}
+
+.text {
+  border: 2px solid transparent;
+  color: #397df6;
+  background: none;
+}
+
+.text:hover {
+  border-color: #73a5ff;
+  color: #73a5ff;
+  background: none;
+}
+
+.text:active {
+  border-color: #397df6;
+  background: none;
+}
+
+.text:focus {
+  border: 2px solid #2f68cc;
+  color: #2f68cc;
+  background: none;
+}
+
+.text:disabled {
+  cursor: not-allowed;
+  border-color: #234e99;
+  color: #234e99;
+  background: none;
+}
+
+.full-width {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 150%;
+  text-align: center;
+}
