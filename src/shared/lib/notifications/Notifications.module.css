@@ -1,0 +1,102 @@
+.container {
+  position: fixed;
+  z-index: 9999;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  left: max(24px, env(safe-area-inset-left));
+  width: min(
+    387px,
+    calc(100% - max(24px, env(safe-area-inset-left)) - max(24px, env(safe-area-inset-right)))
+  );
+  pointer-events: none;
+}
+
+.toast {
+  position: relative;
+  width: 100%;
+  pointer-events: auto;
+}
+
+.toast:focus-visible {
+  outline: 2px solid var(--color-light-100);
+  outline-offset: 3px;
+}
+
+.timer {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+  animation: countdown linear forwards;
+}
+
+/* Focus and hover must still pause when another Toastify event resumes its timer. */
+.toast:hover .timer,
+.toast:focus-within .timer {
+  animation-play-state: paused !important;
+}
+
+.enter {
+  animation: appear 120ms ease-out both;
+}
+
+.exit {
+  pointer-events: none;
+  animation: disappear 120ms ease-in both;
+}
+
+@keyframes countdown {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@media (width <= 480px) {
+  .container {
+    bottom: max(16px, env(safe-area-inset-bottom));
+    left: max(16px, env(safe-area-inset-left));
+    width: min(
+      387px,
+      calc(100% - max(16px, env(safe-area-inset-left)) - max(16px, env(safe-area-inset-right)))
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enter,
+  .exit {
+    animation-duration: 1ms;
+    animation-name: reduced-motion;
+  }
+}
+
+@keyframes reduced-motion {
+  from,
+  to {
+    opacity: 1;
+  }
+}

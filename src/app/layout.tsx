@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+
+import { Notifications } from '@/_app/providers';
+
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -10,7 +13,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" className={``}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Notifications />
+      </body>
     </html>
   );
 }
