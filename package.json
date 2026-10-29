@@ -14,6 +14,7 @@
     "stylelint:fix": "stylelint \"**/*.{css,scss}\" --fix"
   },
   "dependencies": {
+    "@radix-ui/react-scroll-area": "1.4.0",
     "@radix-ui/react-slot": "^1.5.0",
     "@tanstack/react-query": "^5.104.2",
     "next": "16.4.0",
