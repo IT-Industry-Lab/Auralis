@@ -1,0 +1,111 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 4px 22px;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  color: inherit;
+  font: inherit;
+  line-height: 1.5;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color 0.25s,
+    background-color 0.25s,
+    border-color 0.25s;
+}
+
+.button:focus-visible {
+  outline: 2px solid #2f68cc;
+  outline-offset: 2px;
+}
+
+.primary {
+  background: #397df6;
+}
+
+.primary:hover:not(:disabled) {
+  background: #73a5ff;
+}
+
+.primary:active:not(:disabled) {
+  background: #2f68cc;
+}
+
+.primary:disabled {
+  color: #8d9094;
+  background: #234e99;
+  cursor: not-allowed;
+}
+
+.secondary {
+  color: #ede6e6;
+  background: #333;
+}
+
+.secondary:hover:not(:disabled) {
+  background: #4c4c4c;
+}
+
+.secondary:active:not(:disabled) {
+  background: #212121;
+}
+
+.secondary:disabled {
+  color: #8d9094;
+  background: #171717;
+  cursor: not-allowed;
+}
+
+.outline {
+  border-color: #397df6;
+  color: #397df6;
+  background: transparent;
+}
+
+.outline:hover:not(:disabled) {
+  border-color: #73a5ff;
+  color: #73a5ff;
+}
+
+.outline:active:not(:disabled) {
+  border-color: #397df6;
+}
+
+.outline:disabled {
+  border-color: #234e99;
+  color: #234e99;
+  cursor: not-allowed;
+}
+
+.text {
+  border-color: transparent;
+  color: #397df6;
+  background: transparent;
+}
+
+.text:hover:not(:disabled) {
+  border-color: #73a5ff;
+  color: #73a5ff;
+}
+
+.text:active:not(:disabled) {
+  border-color: #397df6;
+}
+
+.text:disabled {
+  border-color: #234e99;
+  color: #234e99;
+  cursor: not-allowed;
+}
+
+.full-width {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 150%;
+  text-align: center;
+}
