@@ -1,8 +1,10 @@
 import type { ComponentProps, ReactNode } from 'react';
+import { Slot } from '@radix-ui/react-slot';
 import type { ButtonVariant } from '@/shared/ui/Button/type';
-import s from './Button.module.css';
+import styles from './Button.module.css';
 
 type ButtonProps = {
+  asChild?: boolean;
   children: ReactNode;
   variant?: ButtonVariant;
   fullWidth?: boolean;
@@ -12,18 +14,25 @@ type ButtonProps = {
 export const Button = ({
   children,
   variant = 'primary',
-  fullWidth,
+  fullWidth = false,
+  asChild = false,
   className,
   type = 'button',
   ...props
 }: ButtonProps) => {
-  const buttonClassName = [s.button, s[variant], fullWidth ? s['full-width'] : '', className ?? '']
+  const Component = asChild ? Slot : 'button';
+  const buttonClassName = [
+    styles.button,
+    styles[variant],
+    fullWidth && styles['full-width'],
+    className,
+  ]
     .filter(Boolean)
     .join(' ');
 
   return (
-    <button type={type} {...props} className={buttonClassName}>
+    <Component {...props} type={type} className={buttonClassName}>
       {children}
-    </button>
+    </Component>
   );
 };

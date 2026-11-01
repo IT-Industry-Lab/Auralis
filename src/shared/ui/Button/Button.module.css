@@ -1,33 +1,44 @@
 .button {
-  cursor: pointer;
-  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 36px;
   padding: 4px 22px;
   border: 2px solid transparent;
   border-radius: 2px;
+  color: inherit;
+  font: inherit;
   line-height: 1.5;
-  transition: 0.25s;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color 0.25s,
+    background-color 0.25s,
+    border-color 0.25s;
+}
+
+.button:focus-visible {
+  outline: 2px solid #2f68cc;
+  outline-offset: 2px;
 }
 
 .primary {
   background: #397df6;
 }
 
-.primary:hover {
+.primary:hover:not(:disabled) {
   background: #73a5ff;
 }
 
-.primary:active {
+.primary:active:not(:disabled) {
   background: #2f68cc;
 }
 
-.primary:focus {
-  border-color: #2f68cc;
-}
-
 .primary:disabled {
-  cursor: not-allowed;
   color: #8d9094;
   background: #234e99;
+  cursor: not-allowed;
 }
 
 .secondary {
@@ -35,82 +46,60 @@
   background: #333;
 }
 
-.secondary:hover {
+.secondary:hover:not(:disabled) {
   background: #4c4c4c;
 }
 
-.secondary:active {
+.secondary:active:not(:disabled) {
   background: #212121;
 }
 
-.secondary:focus {
-  border-color: #4c8dff;
-}
-
 .secondary:disabled {
-  cursor: not-allowed;
   color: #8d9094;
   background: #171717;
+  cursor: not-allowed;
 }
 
 .outline {
-  border: 2px solid #397df6;
+  border-color: #397df6;
   color: #397df6;
-  background: none;
+  background: transparent;
 }
 
-.outline:hover {
+.outline:hover:not(:disabled) {
   border-color: #73a5ff;
   color: #73a5ff;
-  background: none;
 }
 
-.outline:active {
+.outline:active:not(:disabled) {
   border-color: #397df6;
-  background: none;
-}
-
-.outline:focus {
-  border-color: #2f68cc;
-  color: #2f68cc;
-  background: none;
 }
 
 .outline:disabled {
-  cursor: not-allowed;
   border-color: #234e99;
   color: #234e99;
-  background: none;
+  cursor: not-allowed;
 }
 
 .text {
-  border: 2px solid transparent;
+  border-color: transparent;
   color: #397df6;
-  background: none;
+  background: transparent;
 }
 
-.text:hover {
+.text:hover:not(:disabled) {
   border-color: #73a5ff;
   color: #73a5ff;
-  background: none;
 }
 
-.text:active {
+.text:active:not(:disabled) {
   border-color: #397df6;
-  background: none;
-}
-
-.text:focus {
-  border: 2px solid #2f68cc;
-  color: #2f68cc;
-  background: none;
 }
 
 .text:disabled {
-  cursor: not-allowed;
   border-color: #234e99;
   color: #234e99;
-  background: none;
+  cursor: not-allowed;
 }
 
 .full-width {
