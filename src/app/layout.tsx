@@ -4,6 +4,20 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import { Notifications } from '@/_app/providers';
 
 import './globals.css';
+import { AppSidebar } from '@/widget/AppSidebar';
+/*import dynamic from 'next/dynamic';
+
+const Sidebar = dynamic(() => import('@/widget/AppSidebar').then((mod) => mod.AppSidebar));
+
+const geistSans = Geist({
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+});
+
+const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+});*/
 
 export const metadata: Metadata = {
   title: 'Create Next App',

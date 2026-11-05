@@ -1,0 +1,18 @@
+.logout-section {
+  margin-top: auto;
+}
+
+.logout-section button.logout-item:hover:not(:disabled)  {
+  color: var(--color-danger-300);
+}
+
+.logout-section button.logout-item:active {
+  color: var(--color-danger-300);
+  opacity: 0.5;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
