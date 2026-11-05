@@ -9,7 +9,6 @@ import { Sidebar } from '@/shared/ui/Sidebar';
 import { ROUTES } from '@/shared/constants';
 import { AppSidebarProps } from './AppSidebar.props';
 import { useLogout } from '@/features/auth';
-import { useState } from 'react';
 
 const EACH_ELEMENT_NUMBER = 6;
 
@@ -23,7 +22,9 @@ export const AppSidebar = ({ isDisabled, ...rest }: AppSidebarProps) => {
 
   const sidebarItemsMapped = linksData.map(({ id, title, path, icon, iconActive }, i) => {
     const resolvedPath = path === '/profile' ? (user?.id ? ROUTES.profile : ROUTES.signIn) : path;
-    const isActive = pathname === resolvedPath;
+    const isActive =
+      pathname === resolvedPath ||
+      (resolvedPath !== '/' && pathname.startsWith(resolvedPath + '/'));
 
     return (
       <Sidebar.Item
