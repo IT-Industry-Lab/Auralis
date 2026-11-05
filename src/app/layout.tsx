@@ -28,6 +28,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" className={``}>
       <body>
+      <AppSidebar />
         {children}
         <Notifications />
       </body>
