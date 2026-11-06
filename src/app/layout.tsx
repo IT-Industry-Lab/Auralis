@@ -1,9 +1,20 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
-
-import { Notifications } from '@/_app/providers';
-
 import './globals.css';
+import { AppSidebar } from '@/widget/AppSidebar';
+import { Notifications } from '@/_app/providers';
+/*import dynamic from 'next/dynamic';
+
+const Sidebar = dynamic(() => import('@/widget/AppSidebar').then((mod) => mod.AppSidebar));
+
+const geistSans = Geist({
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+});
+
+const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+});*/
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -12,11 +23,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="en" className={``}>
+    <html lang="en">
       <body>
-        {children}
+        <div style={{ display: 'flex' }}>
+          <AppSidebar />
+          <main style={{ flex: 1, padding: '24px' }}>{children}</main>
+        </div>
         <Notifications />
       </body>
     </html>
   );
 }
+
+
