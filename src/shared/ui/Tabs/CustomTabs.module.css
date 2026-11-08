@@ -20,11 +20,11 @@
   align-items: center;
   justify-content: center;
   padding: 6px 24px;
-  border-bottom: 2px solid #4c4c4c;
+  border-bottom: 2px solid var(--color-dark-100);
   border-radius: 2px;
   font: inherit;
   line-height: 1.5;
-  color: #4c4c4c;
+  color: var(--color-dark-100);
   background: transparent;
   transition:
     background-color 0.25s,
@@ -33,17 +33,17 @@
 }
 
 .trigger:hover:not(:disabled) {
-  background: rgb(35 78 153 / 15%);
+  background: color-mix(in srgb, var(--color-accent-900) 15%, transparent);
 }
 
 .trigger:focus-visible {
   background: transparent;
-  outline: 2px solid #2f68cc;
+  outline: 2px solid var(--color-accent-700);
   outline-offset: 2px;
 }
 
 .trigger:active:not(:disabled) {
-  background: rgb(115 165 255 / 15%);
+  background: color-mix(in srgb, var(--color-accent-100) 15%, transparent);
 }
 
 .trigger:disabled {
@@ -53,8 +53,8 @@
 }
 
 .trigger[data-state='active'] {
-  border-bottom-color: #397df6;
-  color: #397df6;
+  border-bottom-color: var(--color-accent-500);
+  color: var(--color-accent-500);
 }
 
 .trigger[data-state='active']:disabled {
