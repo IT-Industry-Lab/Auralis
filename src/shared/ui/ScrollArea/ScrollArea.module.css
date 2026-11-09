@@ -1,0 +1,74 @@
+.root {
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 0;
+  overflow-wrap: normal;
+}
+
+.vertical,
+.both {
+  padding-right: 16px;
+}
+
+.horizontal,
+.both {
+  padding-bottom: 16px;
+}
+
+.viewport {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.viewport:focus-visible {
+  outline: 2px solid var(--color-accent-500);
+  outline-offset: -2px;
+}
+
+.vertical > .viewport > .content {
+  width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.scrollbar {
+  display: flex;
+  touch-action: none;
+  user-select: none;
+}
+
+.scrollbar[data-orientation='vertical'] {
+  width: 16px;
+}
+
+.scrollbar[data-orientation='horizontal'] {
+  flex-direction: column;
+  height: 16px;
+}
+
+.thumb {
+  position: relative;
+  flex: 1;
+}
+
+.thumb::after {
+  position: absolute;
+  border-radius: 2px;
+  background: var(--color-dark-300);
+  content: '';
+}
+
+.scrollbar[data-orientation='vertical'] .thumb::after {
+  inset: 0 6px;
+}
+
+.scrollbar[data-orientation='horizontal'] .thumb::after {
+  inset: 6px 0;
+}
+
+.scrollbar:hover .thumb::after,
+.scrollbar:active .thumb::after {
+  background: var(--color-light-900);
+}

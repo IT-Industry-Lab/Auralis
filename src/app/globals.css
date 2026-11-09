@@ -1,3 +1,6 @@
+@import '../shared/styles/palette.css';
+@import '../shared/styles/typography.css';
+
 :root {
   --background: #fff;
   --foreground: #171717;
@@ -17,7 +20,7 @@ html {
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
