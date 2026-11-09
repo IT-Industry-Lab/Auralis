@@ -1,7 +1,7 @@
 .root {
   width: 279px;
   max-width: 100%;
-  color: #8d9094;
+  color: var(--color-light-900);
   font-family: inherit;
 }
 
@@ -26,7 +26,7 @@
   box-sizing: border-box;
   height: 36px;
   padding: 0 11px;
-  border: 1px solid #4c4c4c;
+  border: 1px solid var(--color-dark-100);
   border-radius: 2px;
   background: transparent;
 }
@@ -49,7 +49,7 @@
 
 .input::placeholder {
   opacity: 1;
-  color: #8d9094;
+  color: var(--color-light-900);
 }
 
 .input::-webkit-search-cancel-button {
@@ -57,25 +57,25 @@
 }
 
 .field:focus-within {
-  border-color: #fff;
-  color: #fff;
-  background: #171717;
+  border-color: var(--color-light-100);
+  color: var(--color-light-100);
+  background: var(--color-dark-500);
 }
 
 .field:has(.input:active:not(:disabled)) {
   border-color: transparent;
-  outline: 2px solid #397df6;
-  color: #8d9094;
+  outline: 2px solid var(--color-accent-500);
+  color: var(--color-light-900);
   background: transparent;
 }
 
 .root[data-error] .field {
-  border-color: #cc1439;
-  color: #fff;
+  border-color: var(--color-danger-500);
+  color: var(--color-light-100);
 }
 
 .error {
-  color: #cc1439;
+  color: var(--color-danger-500);
 }
 
 .search,
@@ -112,7 +112,7 @@
 }
 
 .toggle:focus-visible {
-  outline: 2px solid #397df6;
+  outline: 2px solid var(--color-accent-500);
   outline-offset: 2px;
 }
 
@@ -120,8 +120,8 @@
 .root[data-disabled] .field,
 .root[data-disabled] .input::placeholder,
 .root[data-disabled] .error {
-  border-color: #4c4c4c;
-  color: #4c4c4c;
+  border-color: var(--color-dark-100);
+  color: var(--color-dark-100);
 }
 
 .input:disabled,
