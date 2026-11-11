@@ -1,4 +1,8 @@
-
 export default function HomePage() {
-  return <div></div>;
+  return (
+    <main>
+      <h1>Главная страница</h1>
+
+    </main>
+  );
 }
