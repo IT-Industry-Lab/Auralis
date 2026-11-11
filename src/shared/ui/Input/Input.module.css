@@ -1,0 +1,130 @@
+.root {
+  width: 279px;
+  max-width: 100%;
+  color: var(--color-light-900);
+  font-family: inherit;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.label,
+.error {
+  display: block;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  height: 36px;
+  padding: 0 11px;
+  border: 1px solid var(--color-dark-100);
+  border-radius: 2px;
+  background: transparent;
+}
+
+.input {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: none;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.input::placeholder {
+  opacity: 1;
+  color: var(--color-light-900);
+}
+
+.input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.field:focus-within {
+  border-color: var(--color-light-100);
+  color: var(--color-light-100);
+  background: var(--color-dark-500);
+}
+
+.field:has(.input:active:not(:disabled)) {
+  border-color: transparent;
+  outline: 2px solid var(--color-accent-500);
+  color: var(--color-light-900);
+  background: transparent;
+}
+
+.root[data-error] .field {
+  border-color: var(--color-danger-500);
+  color: var(--color-light-100);
+}
+
+.error {
+  color: var(--color-danger-500);
+}
+
+.search,
+.eye {
+  display: block;
+  flex-shrink: 0;
+  background: currentcolor;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+.search {
+  width: 20px;
+  height: 20px;
+  mask-image: url('./search-outline.svg');
+}
+
+.eye {
+  width: 24px;
+  height: 24px;
+  mask-image: url('./eye-outline.svg');
+}
+
+.toggle {
+  display: flex;
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--color-accent-500);
+  outline-offset: 2px;
+}
+
+.root[data-disabled],
+.root[data-disabled] .field,
+.root[data-disabled] .input::placeholder,
+.root[data-disabled] .error {
+  border-color: var(--color-dark-100);
+  color: var(--color-dark-100);
+}
+
+.input:disabled,
+.toggle:disabled {
+  cursor: not-allowed;
+}
