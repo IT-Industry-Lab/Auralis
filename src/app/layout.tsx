@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { AppSidebar } from '@/widget/AppSidebar';
+import { AppSidebar } from '@/widgets/AppSidebar';
 import { Notifications } from '@/_app/providers';
 /*import dynamic from 'next/dynamic';
 
-const Sidebar = dynamic(() => import('@/widget/AppSidebar').then((mod) => mod.AppSidebar));
+const Sidebar = dynamic(() => import('@/widgets/AppSidebar').then((mod) => mod.AppSidebar));
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
