@@ -1,10 +1,20 @@
-// eslint.config.mjs
+import { defineConfig } from 'eslint/config';
+import nextVitals from 'eslint-config-next/core-web-vitals';
+import nextTs from 'eslint-config-next/typescript';
 import eslintConfigPrettier from 'eslint-config-prettier';
-import nextPlugin from '@next/eslint-plugin-next';
 
-const eslintConfig = [
+const eslintConfig = defineConfig( [
   // 1. Подключаем правила Next.js
-  nextPlugin.configs['core-web-vitals'],
+  ...nextVitals,
+  ...nextTs,
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      parserOptions: {
+        project: './tsconfig.json',
+      },
+    },
+  },
   {
     ignores: [
       '.next/**',
@@ -19,6 +29,6 @@ const eslintConfig = [
   },
   // 2. Отключаем правила, конфликтующие с Prettier
   eslintConfigPrettier,
-];
+]);
 
 export default eslintConfig;
