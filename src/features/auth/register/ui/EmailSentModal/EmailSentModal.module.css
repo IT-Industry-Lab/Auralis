@@ -1,0 +1,73 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background-color: rgb(0 0 0 / 60%);
+}
+
+.modal {
+  width: 100%;
+  max-width: 378px;
+  background-color: var(--color-dark-300);
+  border: 1px solid var(--color-dark-100);
+  border-radius: 2px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--color-dark-100);
+}
+
+.title {
+  margin: 0;
+  color: var(--color-light-100);
+  font-size: var(--text-h1-size);
+  font-weight: var(--text-h1-weight);
+  line-height: var(--text-h1-line-height);
+  letter-spacing: var(--text-letter-spacing);
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px 24px 36px;
+}
+
+.text {
+  margin: 0;
+  color: var(--color-light-100);
+  font-size: var(--text-body-16-size);
+  line-height: var(--text-body-16-line-height);
+  word-break: break-word;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.okButton {
+  min-width: 96px;
+}
+.okButton {
+    min-width: 96px;
+    color: var(--color-light-100);
+}

@@ -27,6 +27,5 @@ export const useGetMeQuery = (): UseGetMeQueryResult => {
     setData(MOCK_USER);
   }, []);
 
-
   return { data, isLoading, isSuccess: !isLoading };
-}
+};

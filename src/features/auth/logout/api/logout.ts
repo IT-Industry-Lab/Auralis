@@ -11,7 +11,6 @@ type UseLogoutResultData = {
   logout: () => Promise<void>;
 };
 
-
 export const useLogout = (): UseLogoutResultData => {
   const [data, setData] = useState<LogoutResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
