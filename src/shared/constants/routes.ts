@@ -7,4 +7,9 @@ export const ROUTES = {
   statistics: '/statistics',
   favorites: '/favorites',
   signIn: '/sign-in',
+
+  register: '/register',
+  verifyEmail: '/verify-email',
+  termsOfService: '/terms-of-service',
+  privacyPolicy: '/privacy-policy',
 } as const;

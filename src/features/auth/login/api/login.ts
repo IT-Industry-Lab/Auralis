@@ -32,7 +32,6 @@ type UseLoginResultData = {
   login: (credentials: LoginCredentials) => Promise<void>;
 };
 
-
 export const useLogin = (): UseLoginResultData => {
   const [data, setData] = useState<LoginResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
