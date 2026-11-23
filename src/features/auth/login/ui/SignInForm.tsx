@@ -2,10 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, type FormEvent } from 'react';
+import { useState, type FormEvent, type SyntheticEvent } from 'react';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { useLogin } from '../api/login';
+import { getLoginFieldError } from '../model/validation';
 import googleIcon from './assets/google.svg';
 import githubIcon from './assets/github.svg';
 import styles from './SignInForm.module.css';
@@ -26,6 +27,14 @@ export function SignInForm() {
   const credentialsError = error?.code === 'invalid-credentials';
   const formError =
     error && error.code !== 'invalid-credentials' ? formErrors[error.code] : undefined;
+
+  function validateEmail(event: SyntheticEvent<HTMLInputElement>) {
+    setEmailError(getLoginFieldError('email', event.currentTarget.validity));
+  }
+
+  function validatePassword(event: SyntheticEvent<HTMLInputElement>) {
+    setPasswordError(getLoginFieldError('password', event.currentTarget.validity));
+  }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -56,6 +65,7 @@ export function SignInForm() {
         <Input
           type="email"
           name="email"
+          pattern=".+@.+[.].+"
           label="Email"
           placeholder="Epam@epam.com"
           autoComplete="username"
@@ -64,13 +74,8 @@ export function SignInForm() {
           disabled={isPending}
           value={email}
           error={emailError}
-          onInvalid={(event) =>
-            setEmailError(
-              event.currentTarget.validity.valueMissing
-                ? 'Enter your email.'
-                : 'Enter a valid email address.'
-            )
-          }
+          onBlur={validateEmail}
+          onInvalid={validateEmail}
           onChange={(event) => {
             setEmail(event.target.value);
             setEmailError('');
@@ -93,13 +98,8 @@ export function SignInForm() {
             passwordError ||
             (credentialsError ? 'The email or password are incorrect. Try again please' : undefined)
           }
-          onInvalid={(event) =>
-            setPasswordError(
-              event.currentTarget.validity.valueMissing
-                ? 'Enter your password.'
-                : 'Password must contain at least 8 characters.'
-            )
-          }
+          onBlur={validatePassword}
+          onInvalid={validatePassword}
           onChange={(event) => {
             setPassword(event.target.value);
             setPasswordError('');
