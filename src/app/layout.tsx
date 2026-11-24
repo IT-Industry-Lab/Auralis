@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { AppSidebar } from '@/widget/AppSidebar';
-import { Notifications } from '@/_app/providers';
+import { Notifications, QueryProvider } from '@/_app/providers';
 /*import dynamic from 'next/dynamic';
 
 const Sidebar = dynamic(() => import('@/widget/AppSidebar').then((mod) => mod.AppSidebar));
@@ -25,11 +25,13 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en">
       <body>
-        <div style={{ display: 'flex' }}>
-          <AppSidebar />
-          <main style={{ flex: 1, padding: '24px' }}>{children}</main>
-        </div>
-        <Notifications />
+        <QueryProvider>
+          <div style={{ display: 'flex' }}>
+            <AppSidebar />
+            <main style={{ flex: 1, padding: '24px' }}>{children}</main>
+          </div>
+          <Notifications />
+        </QueryProvider>
       </body>
     </html>
   );

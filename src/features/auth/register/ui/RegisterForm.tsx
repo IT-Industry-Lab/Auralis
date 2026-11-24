@@ -8,8 +8,8 @@ import { ROUTES } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
 import { Checkbox } from '@/shared/ui/Checkbox';
 import { Input } from '@/shared/ui/Input';
-import { useRegister } from '../api/register';
-import type { RegisterFormData } from '../model/types';
+import { RegisterApiError, useRegister } from '../api/register';
+import { toRegisterCredentials, type RegisterFormData } from '../model/types';
 import { registerValidation } from '../model/validation';
 import { EmailSentModal } from './EmailSentModal/EmailSentModal';
 import s from './RegisterForm.module.css';
@@ -17,7 +17,7 @@ import google from './google.svg';
 import github from './github.svg';
 
 export const RegisterForm = () => {
-  const { register, isLoading } = useRegister();
+  const { mutateAsync: register, isPending, error, reset: resetMutation } = useRegister();
   const [sentEmail, setSentEmail] = useState<string | null>(null);
 
   const {
@@ -27,7 +27,8 @@ export const RegisterForm = () => {
     setError,
     formState: { errors, isValid },
   } = useForm<RegisterFormData>({
-    mode: 'onBlur',
+    mode: 'onTouched',
+    reValidateMode: 'onChange',
     defaultValues: {
       username: '',
       email: '',
@@ -38,21 +39,18 @@ export const RegisterForm = () => {
   });
 
   const onSubmit = async (data: RegisterFormData) => {
-    const result = await register({
-      username: data.username,
-      email: data.email,
-      password: data.password,
-    });
+    resetMutation();
 
-    if (!result.ok) {
-      if (result.fieldError) {
-        setError(result.fieldError.field, { message: result.fieldError.message });
+    try {
+      await register(toRegisterCredentials(data));
+
+      setSentEmail(data.email);
+      reset();
+    } catch (err) {
+      if (err instanceof RegisterApiError && err.fieldError) {
+        setError(err.fieldError.field, { message: err.fieldError.message });
       }
-      return;
     }
-
-    setSentEmail(data.email);
-    reset();
   };
 
   return (
@@ -168,7 +166,13 @@ export const RegisterForm = () => {
           />
         </div>
 
-        <Button type="submit" disabled={!isValid || isLoading} fullWidth>
+        {error && (
+          <p className={s['api-error']} role="alert">
+            {error.message}
+          </p>
+        )}
+
+        <Button type="submit" disabled={!isValid || isPending} fullWidth>
           Sign Up
         </Button>
 

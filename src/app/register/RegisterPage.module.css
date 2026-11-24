@@ -1,0 +1,9 @@
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 24px 0;
+  background-color: var(--color-dark-700);
+  color: var(--color-light-100);
+}

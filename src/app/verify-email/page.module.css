@@ -1,0 +1,16 @@
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background-color: var(--color-dark-700);
+  color: var(--color-light-100);
+}
+
+.loader {
+  margin-top: 120px;
+  color: var(--color-light-100);
+  font-size: var(--text-body-16-size);
+  line-height: var(--text-body-16-line-height);
+  letter-spacing: var(--text-letter-spacing);
+}

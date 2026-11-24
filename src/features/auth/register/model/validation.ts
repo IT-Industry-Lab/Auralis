@@ -9,7 +9,7 @@ const formValidation = {
   usernameRegex: /^[0-9A-Za-z_-]+$/,
   emailRegex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   passwordRegex:
-    /^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])[0-9A-Za-z!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]+$/,
+    /^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~])[0-9A-Za-z!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]+$/,
 };
 
 export const registerValidation: {
@@ -50,7 +50,7 @@ export const registerValidation: {
     pattern: {
       value: formValidation.passwordRegex,
       message:
-        'Password must contain 0-9, a-z, A-Z, ! " # $ % & \' ( ) * + , - . / : ; < = > ? @ [ \\ ] ^ _ { | } ~',
+        'Password must contain 0-9, a-z, A-Z and at least one special character: ! " # $ % & \' ( ) * + , - . / : ; < = > ? @ [ \\ ] ^ _ { | } ~',
     },
   },
   passwordConfirmation: {
