@@ -20,12 +20,14 @@ export class LoginError extends Error {
   }
 }
 
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'https://auralis-online.ru/api/v1';
+export const authApiBaseUrl = (
+  process.env.NEXT_PUBLIC_API_BASE_URL ?? 'https://auralis-online.ru/api/v1'
+).replace(/\/$/, '');
 
 export async function requestLogin(credentials: LoginCredentials): Promise<LoginResponse> {
   let response: Response;
   try {
-    response = await fetch(`${apiBaseUrl.replace(/\/$/, '')}/auth/login`, {
+    response = await fetch(`${authApiBaseUrl}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',

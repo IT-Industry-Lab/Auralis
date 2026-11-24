@@ -1,11 +1,16 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, type FormEvent, type SyntheticEvent } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState, useTransition, type FormEvent, type SyntheticEvent } from 'react';
+import { ROUTES } from '@/shared/constants';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
+import { ACCESS_TOKEN_KEY, checkLoginSession } from '../../session/session';
 import { useLogin } from '../api/login';
+import { authApiBaseUrl } from '../api/requestLogin';
 import { getLoginFieldError } from '../model/validation';
 import googleIcon from './assets/google.svg';
 import githubIcon from './assets/github.svg';
@@ -19,14 +24,38 @@ const formErrors = {
 };
 
 export function SignInForm() {
+  const router = useRouter();
+  const [openingProfile, startTransition] = useTransition();
+  const session = useQuery({
+    queryKey: ['auth', 'sign-in-session'],
+    queryFn: ({ signal }) => checkLoginSession(signal, authApiBaseUrl),
+    retry: false,
+    gcTime: 0,
+    networkMode: 'always',
+    refetchOnWindowFocus: false,
+  });
+  const { refetch } = session;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const { login, error, isPending, isSuccess, reset } = useLogin();
+  const { login, error, isPending, reset } = useLogin();
   const credentialsError = error?.code === 'invalid-credentials';
   const formError =
     error && error.code !== 'invalid-credentials' ? formErrors[error.code] : undefined;
+  const redirectToProfile = session.isSuccess && !session.isFetching && session.data;
+
+  useEffect(() => {
+    if (redirectToProfile) router.replace(ROUTES.profile);
+  }, [redirectToProfile, router]);
+
+  useEffect(() => {
+    function onStorage(event: StorageEvent) {
+      if (event.key === ACCESS_TOKEN_KEY || event.key === null) void refetch();
+    }
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
+  }, [refetch]);
 
   function validateEmail(event: SyntheticEvent<HTMLInputElement>) {
     setEmailError(getLoginFieldError('email', event.currentTarget.validity));
@@ -43,7 +72,24 @@ export function SignInForm() {
       form.querySelector<HTMLInputElement>('input:invalid')?.focus();
       return;
     }
-    login({ email: email.trim(), password });
+    login({ email: email.trim(), password }, () => {
+      setPassword('');
+      startTransition(() => router.replace(ROUTES.profile));
+    });
+  }
+
+  if (openingProfile || redirectToProfile) return <p role="status">Opening profile…</p>;
+  if (session.isPending || session.isFetching) return <p role="status">Checking session…</p>;
+
+  if (session.isError) {
+    return (
+      <div className={styles.card}>
+        <p role="alert">Could not check your session. Please try again.</p>
+        <Button type="button" onClick={() => void refetch()}>
+          Try again
+        </Button>
+      </div>
+    );
   }
 
   return (
@@ -116,11 +162,6 @@ export function SignInForm() {
       {formError && (
         <p className={styles['form-error']} role="alert">
           {formError}
-        </p>
-      )}
-      {isSuccess && (
-        <p className={styles.notice} role="status">
-          Signed in successfully.
         </p>
       )}
       <p className={styles.prompt}>Don’t have an account?</p>
