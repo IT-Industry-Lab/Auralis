@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 
 import type { RegisterCredentials } from '../model/types';
 import { BASE_URL } from './baseUrl';
-import { parseRegisterError, RegisterApiError, type RegisterFieldError } from './registerResponse';
+import { parseRegisterError, RegisterApiError } from './registerResponse';
 
 export { RegisterApiError };
 export type { RegisterCredentials } from '../model/types';
