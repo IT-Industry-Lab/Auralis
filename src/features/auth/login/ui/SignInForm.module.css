@@ -39,7 +39,6 @@
   line-height: var(--text-body-14-line-height);
 }
 
-.notice,
 .form-error,
 .prompt {
   margin-top: 18px;
@@ -47,7 +46,6 @@
   line-height: var(--text-body-16-line-height);
 }
 
-.notice,
 .prompt {
   text-align: center;
 }
