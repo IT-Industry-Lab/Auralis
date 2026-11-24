@@ -1,36 +1,57 @@
 'use client';
 
-import { useMutation } from '@tanstack/react-query';
-import { useRef } from 'react';
-import {
-  requestLogin,
-  type LoginCredentials,
-  type LoginError,
-  type LoginResponse,
-} from './requestLogin';
+import { useState, useCallback } from 'react';
 
-export function useLogin() {
-  const submitting = useRef(false);
-  const { mutate, data, error, isPending, isSuccess, reset } = useMutation<
-    LoginResponse,
-    LoginError,
-    LoginCredentials
-  >({
-    mutationFn: requestLogin,
-    gcTime: 0,
-    retry: false,
-    networkMode: 'always',
-    onSettled: () => {
-      submitting.current = false;
-    },
-  });
+type LoginCredentials = {
+  email: string;
+  password: string;
+};
 
-  function login(credentials: LoginCredentials) {
-    // Two submits can happen before React renders the disabled button.
-    if (submitting.current) return;
-    submitting.current = true;
-    mutate(credentials);
-  }
+type LoginResponse = {
+  token: string;
+  user: {
+    id: string;
+    name: string;
+    email: string;
+  };
+};
 
-  return { login, data, error, isPending, isSuccess, reset };
-}
+const MOCK_LOGIN_RESPONSE: LoginResponse = {
+  token: 'mock-jwt-token',
+  user: {
+    id: 'mock-user-1',
+    name: 'Test User',
+    email: 'test@example.com',
+  },
+};
+
+type UseLoginResultData = {
+  data: LoginResponse | null;
+  isLoading: boolean;
+  error: string | null;
+  login: (credentials: LoginCredentials) => Promise<void>;
+};
+
+export const useLogin = (): UseLoginResultData => {
+  const [data, setData] = useState<LoginResponse | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const login = useCallback(async (): Promise<void> => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
+      const result: LoginResponse = MOCK_LOGIN_RESPONSE;
+      setData(result);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Неизвестная ошибка');
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  return { data, isLoading, error, login };
+};

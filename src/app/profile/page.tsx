@@ -1,5 +1,4 @@
 export default async function ProfilePage() {
-
   return (
     <main>
       <h1>Профиль пользователя</h1>

@@ -52,6 +52,17 @@
   color: var(--color-light-900);
 }
 
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:active,
+.input:autofill {
+  box-shadow: 0 0 0 1000px var(--color-dark-500) inset;
+  -webkit-text-fill-color: var(--color-light-100);
+  caret-color: var(--color-light-100);
+  color: var(--color-light-100);
+}
+
 .input::-webkit-search-cancel-button {
   appearance: none;
 }
