@@ -3,12 +3,14 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Script from 'next/script';
 import { Controller, useForm } from 'react-hook-form';
 import { ROUTES } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/Button';
 import { Checkbox } from '@/shared/ui/Checkbox';
 import { Input } from '@/shared/ui/Input';
 import { RegisterApiError, useRegister } from '../api/register';
+import { RECAPTCHA_SITE_KEY } from '../config/recaptcha';
 import { toRegisterCredentials, type RegisterFormData } from '../model/types';
 import { registerValidation } from '../model/validation';
 import { EmailSentModal } from './EmailSentModal/EmailSentModal';
@@ -55,6 +57,10 @@ export const RegisterForm = () => {
 
   return (
     <div className={s.registerForm}>
+      <Script
+        src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
+        strategy="afterInteractive"
+      />
       <h1 className={s.registerFormTitle}>Sign Up</h1>
 
       <div className={s.oauth}>

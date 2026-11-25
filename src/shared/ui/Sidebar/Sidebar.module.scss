@@ -1,3 +1,4 @@
+
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -22,9 +23,9 @@
   cursor: pointer;
   width: 100%;
   transition:
-    color 0.2s ease,
-    opacity 0.2s linear,
-    background-color 0.2s ease;
+          color 0.2s ease,
+          opacity 0.2s linear,
+          background-color 0.2s ease;
   border: none;
   outline: none;
   background-color: transparent;
@@ -40,6 +41,7 @@
 
 .item:active:not(:disabled) {
   color: var(--color-accent-700);
+
 }
 
 .item-active {
