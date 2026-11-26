@@ -8,6 +8,8 @@ export function SingleDatePicker({
   value,
   onChange,
   onInputValidationChange,
+  minDate,
+  maxDate,
   mode,
   ...props
 }: SingleDatePickerProps) {
@@ -15,7 +17,7 @@ export function SingleDatePicker({
     value,
     format: formatDate,
     parse: parseDate,
-    isAllowed: (date) => isWithinBounds(date, props.minDate, props.maxDate),
+    isAllowed: (date) => isWithinBounds(date, minDate, maxDate),
     onChange,
     onInputValidationChange,
   });
@@ -26,8 +28,8 @@ export function SingleDatePicker({
         <Calendar
           mode="single"
           value={value}
-          minDate={props.minDate}
-          maxDate={props.maxDate}
+          minDate={minDate}
+          maxDate={maxDate}
           labels={props.labels}
           onChange={(date) => {
             input.select(date);

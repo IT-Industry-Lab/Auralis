@@ -8,6 +8,8 @@ export function RangeDatePicker({
   value,
   onChange,
   onInputValidationChange,
+  minDate,
+  maxDate,
   mode,
   ...props
 }: RangeDatePickerProps) {
@@ -16,8 +18,7 @@ export function RangeDatePicker({
     format: formatRange,
     parse: parseRange,
     isAllowed: ({ from, to }) =>
-      isWithinBounds(from, props.minDate, props.maxDate) &&
-      isWithinBounds(to, props.minDate, props.maxDate),
+      isWithinBounds(from, minDate, maxDate) && isWithinBounds(to, minDate, maxDate),
     onChange,
     onInputValidationChange,
   });
@@ -28,8 +29,8 @@ export function RangeDatePicker({
         <Calendar
           mode="range"
           value={value}
-          minDate={props.minDate}
-          maxDate={props.maxDate}
+          minDate={minDate}
+          maxDate={maxDate}
           labels={props.labels}
           onChange={(range) => {
             input.select(range);

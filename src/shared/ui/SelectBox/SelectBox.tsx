@@ -2,7 +2,6 @@
 
 import * as Select from '@radix-ui/react-select';
 import {
-  useEffect,
   useId,
   useState,
   type AriaAttributes,
@@ -93,9 +92,7 @@ export function SelectBox({
     }
   }
 
-  useEffect(() => {
-    if (disabled || options.length === 0) setOpen(false);
-  }, [disabled, options.length]);
+  if (open && (disabled || options.length === 0)) setOpen(false);
 
   return (
     <div className={styles.root}>
