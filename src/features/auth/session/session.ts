@@ -34,6 +34,14 @@ export function storeAccessToken(token: string) {
   writeAccessToken(token);
 }
 
+export function clearAccessToken() {
+  writeAccessToken(null);
+}
+
+export function getAccessToken() {
+  return readAccessToken();
+}
+
 async function validateAccessToken(token: string, signal: AbortSignal, apiBaseUrl: string) {
   const response = await fetch(`${apiBaseUrl}/auth/me`, {
     method: 'GET',

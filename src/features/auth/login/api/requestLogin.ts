@@ -1,3 +1,5 @@
+import { AUTH_API_BASE_URL } from '../../session/apiBaseUrl';
+
 export type LoginCredentials = {
   email: string;
   password: string;
@@ -20,9 +22,7 @@ export class LoginError extends Error {
   }
 }
 
-export const authApiBaseUrl = (
-  process.env.NEXT_PUBLIC_API_BASE_URL ?? 'https://auralis-online.ru/api/v1'
-).replace(/\/$/, '');
+export const authApiBaseUrl = AUTH_API_BASE_URL;
 
 export async function requestLogin(credentials: LoginCredentials): Promise<LoginResponse> {
   let response: Response;

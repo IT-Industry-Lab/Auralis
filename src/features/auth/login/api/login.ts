@@ -1,6 +1,6 @@
 'use client';
 
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRef } from 'react';
 import { storeAccessToken } from '../../session/session';
 import {
@@ -11,6 +11,7 @@ import {
 } from './requestLogin';
 
 export function useLogin() {
+  const queryClient = useQueryClient();
   const submitting = useRef(false);
   const { mutate, data, error, isPending, isSuccess, reset } = useMutation<
     LoginResponse,
@@ -21,7 +22,10 @@ export function useLogin() {
     gcTime: 0,
     retry: false,
     networkMode: 'always',
-    onSuccess: ({ accessToken }) => storeAccessToken(accessToken),
+    onSuccess: async ({ accessToken }) => {
+      storeAccessToken(accessToken);
+      await queryClient.invalidateQueries({ queryKey: ['auth', 'me'] });
+    },
     onSettled: () => {
       submitting.current = false;
     },

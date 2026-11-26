@@ -4,6 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 
 import type { RegisterCredentials } from '../model/types';
 import { BASE_URL } from './baseUrl';
+import { getRegisterRecaptchaToken } from './recaptcha';
 import { parseRegisterError, RegisterApiError } from './registerResponse';
 
 export { RegisterApiError };
@@ -13,13 +14,14 @@ export type { RegisterFieldError } from './registerResponse';
 const REGISTER_ENDPOINT = `${BASE_URL}/auth/register`;
 
 const registerRequest = async (credentials: RegisterCredentials): Promise<void> => {
+  const recaptchaToken = await getRegisterRecaptchaToken();
   const response = await fetch(REGISTER_ENDPOINT, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(credentials),
+    body: JSON.stringify({ ...credentials, recaptchaToken }),
   });
 
   if (!response.ok) {
