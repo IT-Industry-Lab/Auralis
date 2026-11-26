@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { AppSidebar } from '@/widgets/AppSidebar';
+import { Header } from '@/widgets/Header';
 import { Notifications, QueryProvider } from '@/_app/providers';
 /*import dynamic from 'next/dynamic';
 
@@ -26,6 +27,11 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
     <html lang="en">
       <body>
         <QueryProvider>
+          <Header
+            isAuthenticated={false}
+            languageOptions={[{ value: 'en', label: 'English' }]}
+            languageValue="en"
+          />
           <div style={{ display: 'flex' }}>
             <AppSidebar />
             <main style={{ flex: 1, padding: '24px' }}>{children}</main>

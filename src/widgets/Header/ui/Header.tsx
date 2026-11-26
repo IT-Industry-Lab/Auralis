@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSyncExternalStore } from 'react';
 
 import { ROUTES } from '@/shared/constants';
 import { Button } from '@/shared/ui/Button';
@@ -13,17 +14,25 @@ export type HeaderProps = {
   isAuthenticated: boolean;
   languageOptions: readonly SelectBoxOption[];
   languageValue: string;
-  onLanguageChange: (value: string) => void;
-  onNotificationsClick: () => void;
+  onLanguageChange?: (value: string) => void;
+  onNotificationsClick?: () => void;
 };
+
+const subscribe = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
 
 export function Header({
   isAuthenticated,
   languageOptions,
   languageValue,
-  onLanguageChange,
+  onLanguageChange = () => {},
   onNotificationsClick,
 }: HeaderProps) {
+  const isBrowser = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
+
+  if (!isBrowser) return null;
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
