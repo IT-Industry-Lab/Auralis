@@ -19,86 +19,86 @@
 }
 
 .button:focus-visible {
-  outline: 2px solid #2f68cc;
+  outline: 2px solid var(--color-accent-700);
   outline-offset: 2px;
 }
 
 .primary {
-  background: #397df6;
+  background: var(--color-accent-500);
 }
 
 .primary:hover:not(:disabled) {
-  background: #73a5ff;
+  background: var(--color-accent-100);
 }
 
 .primary:active:not(:disabled) {
-  background: #2f68cc;
+  background: var(--color-accent-700);
 }
 
 .primary:disabled {
-  color: #8d9094;
-  background: #234e99;
+  color: var(--color-light-900);
+  background: var(--color-accent-900);
   cursor: not-allowed;
 }
 
 .secondary {
-  color: #ede6e6;
-  background: #333;
+  color: var(--color-light-500);
+  background: var(--color-dark-300);
 }
 
 .secondary:hover:not(:disabled) {
-  background: #4c4c4c;
+  background: var(--color-dark-100);
 }
 
 .secondary:active:not(:disabled) {
-  background: #212121;
+  background: var(--color-dark-500);
 }
 
 .secondary:disabled {
-  color: #8d9094;
-  background: #171717;
+  color: var(--color-light-900);
+  background: var(--color-dark-500);
   cursor: not-allowed;
 }
 
 .outline {
-  border-color: #397df6;
-  color: #397df6;
+  border-color: var(--color-accent-500);
+  color: var(--color-accent-500);
   background: transparent;
 }
 
 .outline:hover:not(:disabled) {
-  border-color: #73a5ff;
-  color: #73a5ff;
+  border-color: var(--color-accent-100);
+  color: var(--color-accent-100);
 }
 
 .outline:active:not(:disabled) {
-  border-color: #397df6;
+  border-color: var(--color-accent-500);
 }
 
 .outline:disabled {
-  border-color: #234e99;
-  color: #234e99;
+  border-color: var(--color-accent-900);
+  color: var(--color-accent-900);
   cursor: not-allowed;
 }
 
 .text {
   border-color: transparent;
-  color: #397df6;
+  color: var(--color-accent-500);
   background: transparent;
 }
 
 .text:hover:not(:disabled) {
-  border-color: #73a5ff;
-  color: #73a5ff;
+  border-color: var(--color-accent-100);
+  color: var(--color-accent-100);
 }
 
 .text:active:not(:disabled) {
-  border-color: #397df6;
+  border-color: var(--color-accent-500);
 }
 
 .text:disabled {
-  border-color: #234e99;
-  color: #234e99;
+  border-color: var(--color-accent-900);
+  color: var(--color-accent-900);
   cursor: not-allowed;
 }
 

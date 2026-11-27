@@ -1,12 +1,14 @@
 'use client';
 import s from './Checkbox.module.scss';
 import { useState } from 'react';
+import { InputCircle } from '@/shared/ui/InputCircle/InputCircle';
 
 export type CheckboxProps = {
   label?: string;
+  value: string;
 };
 
-export const Checkbox = ({ label }: CheckboxProps) => {
+export const Checkbox = ({ label, value }: CheckboxProps) => {
   const [checked, setChecked] = useState(false);
   const [isDisabled, setDisabled] = useState(false);
   const changeCheckedHandler = () => {
@@ -14,16 +16,17 @@ export const Checkbox = ({ label }: CheckboxProps) => {
   };
   return (
     <div className={s.checkboxWrapper}>
-      <div className={s.circle}>
+      <InputCircle>
         <input
-          id={'checkboxId'}
+          id={value}
           onChange={changeCheckedHandler}
           disabled={isDisabled}
           className={`${s.checkbox} ${checked ? s.checked : ''}`}
           type="checkbox"
           checked={checked}
+          value={value}
         />
-      </div>
+      </InputCircle>
 
       {label && (
         <label htmlFor={'checkboxId'} className={s.label}>

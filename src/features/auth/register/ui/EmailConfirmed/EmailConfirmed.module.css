@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 35px;
+  color: var(--color-light-100);
+}
+
+.title {
+  margin: 0;
+  color: var(--color-light-100);
+  font-size: var(--text-h1-size);
+  font-weight: var(--text-h1-weight);
+  line-height: 24px;
+  letter-spacing: var(--text-letter-spacing);
+  text-align: center;
+}
+
+.description {
+  margin: 19px 0 0;
+  color: var(--color-light-100);
+  font-size: var(--text-body-16-size);
+  font-weight: var(--text-body-16-weight);
+  line-height: var(--text-body-16-line-height);
+  letter-spacing: var(--text-letter-spacing);
+  text-align: center;
+}
+
+.signInButton {
+  min-width: 182px;
+  margin-top: 54px;
+}
+
+.illustration {
+  width: 100%;
+  max-width: 432px;
+  height: auto;
+  margin-top: 72px;
+}

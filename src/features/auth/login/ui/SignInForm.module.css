@@ -1,0 +1,74 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: min(378px, 100%);
+  margin: 12px auto 0;
+  padding: 23px;
+  border: 1px solid var(--color-dark-300);
+  border-radius: 2px;
+  background: var(--color-dark-500);
+  color: var(--color-light-100);
+  color-scheme: dark;
+}
+
+.title {
+  font-size: var(--text-h1-size);
+  font-weight: var(--text-h1-weight);
+  line-height: var(--text-h1-line-height);
+  text-align: center;
+}
+
+.providers {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin: 12px 0 24px;
+}
+
+.fields {
+  display: grid;
+  gap: 24px;
+  text-align: left;
+}
+
+.recovery {
+  align-self: flex-end;
+  margin: 36px 0 24px;
+  color: var(--color-light-900);
+  font-size: var(--text-body-14-size);
+  line-height: var(--text-body-14-line-height);
+}
+
+.form-error,
+.prompt {
+  margin-top: 18px;
+  font-size: var(--text-body-16-size);
+  line-height: var(--text-body-16-line-height);
+}
+
+.prompt {
+  text-align: center;
+}
+
+.form-error {
+  color: var(--color-danger-500);
+  text-align: left;
+}
+
+.register {
+  align-self: center;
+  margin-top: 8px;
+  padding: 6px 12px;
+  color: var(--color-accent-500);
+  font-weight: var(--text-h3-weight);
+  line-height: var(--text-body-16-line-height);
+}
+
+.register:hover {
+  color: var(--color-accent-100);
+}
+
+.register:focus-visible {
+  outline: 2px solid var(--color-accent-500);
+  outline-offset: 2px;
+}
