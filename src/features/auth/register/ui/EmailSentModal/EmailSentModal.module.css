@@ -68,6 +68,6 @@
   min-width: 96px;
 }
 .okButton {
-    min-width: 96px;
-    color: var(--color-light-100);
+  min-width: 96px;
+  color: var(--color-light-100);
 }

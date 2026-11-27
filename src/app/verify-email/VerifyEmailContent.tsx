@@ -2,7 +2,11 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
-import { EmailConfirmed, VerificationLinkExpired, getRegisterBaseUrl } from '@/features/auth/register';
+import {
+  EmailConfirmed,
+  VerificationLinkExpired,
+  getRegisterBaseUrl,
+} from '@/features/auth/register';
 import s from './page.module.css';
 
 type VerifyEmailResponse = {

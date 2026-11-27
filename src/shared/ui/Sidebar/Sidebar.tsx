@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
 import Link from 'next/link';
 import styles from './Sidebar.module.scss';
-import {
-  SidebarItemProps,
-  SidebarNavigationProps,
-  SidebarProps,
-} from './Sidebar.props';
+import { SidebarItemProps, SidebarNavigationProps, SidebarProps } from './Sidebar.props';
 
-
-export const Sidebar = ({ isDisabled=false, children, className='', ...rest }: SidebarProps) => {
-  const sidebarClassName = `${styles['sidebar']} ${isDisabled ? styles['sidebar-disabled'] : ''} ${className}`
+export const Sidebar = ({
+  isDisabled = false,
+  children,
+  className = '',
+  ...rest
+}: SidebarProps) => {
+  const sidebarClassName = `${styles['sidebar']} ${isDisabled ? styles['sidebar-disabled'] : ''} ${className}`;
 
   return (
     <aside className={sidebarClassName} {...rest}>
@@ -19,15 +19,8 @@ export const Sidebar = ({ isDisabled=false, children, className='', ...rest }: S
   );
 };
 
-const SidebarNavigation = ({
-  children,
-  ...rest
-}: SidebarNavigationProps) => {
-  return (
-    <nav {...rest}>
-      {children}
-    </nav>
-  );
+const SidebarNavigation = ({ children, ...rest }: SidebarNavigationProps) => {
+  return <nav {...rest}>{children}</nav>;
 };
 
 export const SidebarItem = ({
@@ -37,11 +30,11 @@ export const SidebarItem = ({
   isDisabled = false,
   onClick,
   children,
-  className='',
+  className = '',
   style = {},
 }: SidebarItemProps) => {
-  const itemClassName = `${styles['item']} ${ isActive ? styles['item-active'] : ''} ${isDisabled ? styles['item-disabled'] : ''} ${className}`
-  const iconClassName = `${styles['icon']} ${isActive ? styles['icon-active'] : ''}`
+  const itemClassName = `${styles['item']} ${isActive ? styles['item-active'] : ''} ${isDisabled ? styles['item-disabled'] : ''} ${className}`;
+  const iconClassName = `${styles['icon']} ${isActive ? styles['icon-active'] : ''}`;
 
   if (path) {
     return (
@@ -58,7 +51,7 @@ export const SidebarItem = ({
     );
   }
 
- /* if (!path) {
+  /* if (!path) {
     return (
       <div style={{ ...style }} className={itemClassName}>
         <span className={iconClassName}>{icon}</span>
@@ -80,7 +73,6 @@ export const SidebarItem = ({
     </button>
   );
 };
-
 
 Sidebar.Navigation = SidebarNavigation;
 Sidebar.Item = SidebarItem;

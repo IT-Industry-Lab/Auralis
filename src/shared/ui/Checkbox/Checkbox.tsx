@@ -1,45 +1,35 @@
 'use client';
-
-import { type ChangeEvent, CSSProperties, type ReactNode, useId } from 'react';
-import s from './Checkbox.module.css';
+import s from './Checkbox.module.scss';
+import { useState } from 'react';
+import { InputCircle } from '@/shared/ui/InputCircle/InputCircle';
 
 export type CheckboxProps = {
-  label?: ReactNode;
-  checked?: boolean;
-  onChange?: (checked: boolean) => void;
-  disabled?: boolean;
-  className?: string[];
-  style?: CSSProperties;
+  label?: string;
+  value: string;
 };
 
-export const Checkbox = ({
-  label,
-  checked = false,
-  onChange,
-  disabled = false,
-  style,
-}: CheckboxProps) => {
-  const id = useId();
-
-  const changeCheckedHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange?.(e.target.checked);
+export const Checkbox = ({ label, value }: CheckboxProps) => {
+  const [checked, setChecked] = useState(false);
+  const [isDisabled, setDisabled] = useState(false);
+  const changeCheckedHandler = () => {
+    setChecked(!checked);
   };
-
   return (
-    <div className={`${s.checkboxWrapper} `} style={style}>
-      <div className={s.circle}>
+    <div className={s.checkboxWrapper}>
+      <InputCircle>
         <input
-          id={id}
+          id={value}
           onChange={changeCheckedHandler}
-          disabled={disabled}
+          disabled={isDisabled}
           className={`${s.checkbox} ${checked ? s.checked : ''}`}
           type="checkbox"
           checked={checked}
+          value={value}
         />
-      </div>
+      </InputCircle>
 
       {label && (
-        <label htmlFor={id} className={s.label}>
+        <label htmlFor={'checkboxId'} className={s.label}>
           {label}
         </label>
       )}

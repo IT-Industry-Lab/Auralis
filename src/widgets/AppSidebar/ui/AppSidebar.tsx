@@ -28,7 +28,7 @@ export const AppSidebar = ({ isDisabled, ...rest }: AppSidebarProps) => {
         isDisabled={isDisabled}
         key={id}
         path={resolvedPath}
-        icon={isActive ? (iconActive || icon) : icon}
+        icon={isActive ? iconActive || icon : icon}
         isActive={isActive}
         style={{ marginTop: (i + 1) % EACH_ELEMENT_NUMBER === 0 ? 60 : 0 }}
       >
