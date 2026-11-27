@@ -5,10 +5,7 @@ import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import type { DatePickerBaseProps } from '../types';
 import styles from './DateField.module.css';
 
-type DateFieldProps = Omit<
-  DatePickerBaseProps,
-  'minDate' | 'maxDate' | 'onInputValidationChange'
-> & {
+type DateFieldProps = DatePickerBaseProps & {
   mode: 'single' | 'range';
   input: {
     text: string;
@@ -25,6 +22,9 @@ export function DateField({
   label,
   error,
   labels,
+  minDate,
+  maxDate,
+  onInputValidationChange,
   id,
   className,
   style,
@@ -44,12 +44,12 @@ export function DateField({
   const hasError = Boolean(error);
   const invalid = hasError || ariaInvalid === true || ariaInvalid === 'true';
   const [open, setOpen] = useState(false);
-  const isOpen = open && !disabled && !readOnly;
   const rootRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const { resetDraft } = input;
 
-  if (open && (disabled || readOnly)) setOpen(false);
+  useEffect(() => {
+    if (disabled || readOnly) setOpen(false);
+  }, [disabled, readOnly]);
 
   useEffect(() => {
     const field = rootRef.current?.querySelector('input');
@@ -61,7 +61,7 @@ export function DateField({
       // React onReset and later native listeners must have a chance to cancel first.
       setTimeout(() => {
         if (!active || event.defaultPrevented) return;
-        resetDraft();
+        input.resetDraft();
         setOpen(false);
       }, 0);
     };
@@ -70,10 +70,10 @@ export function DateField({
       active = false;
       form.removeEventListener('reset', reset);
     };
-  }, [resetDraft]);
+  }, [input.resetDraft]);
 
   return (
-    <Popover.Root open={isOpen} onOpenChange={setOpen}>
+    <Popover.Root open={open && !disabled && !readOnly} onOpenChange={setOpen}>
       <div
         ref={rootRef}
         className={[styles.root, className].filter(Boolean).join(' ')}
@@ -94,7 +94,7 @@ export function DateField({
           <div
             className={styles.control}
             data-invalid={invalid || undefined}
-            data-open={isOpen || undefined}
+            data-open={open || undefined}
           >
             <input
               {...props}
@@ -109,7 +109,8 @@ export function DateField({
               autoComplete={props.autoComplete ?? 'off'}
               className={styles.input}
               aria-haspopup="dialog"
-              aria-controls={isOpen ? popupId : undefined}
+              aria-expanded={open && !disabled && !readOnly}
+              aria-controls={open ? popupId : undefined}
               aria-invalid={hasError ? true : ariaInvalid}
               aria-describedby={
                 [describedBy, hasError ? errorId : undefined].filter(Boolean).join(' ') || undefined
@@ -137,7 +138,7 @@ export function DateField({
                 aria-controls={popupId}
               >
                 <Image
-                  src={`/icons/date-picker/calendar${invalid ? '-error' : isOpen ? '-active' : ''}.svg`}
+                  src={`/icons/date-picker/calendar${invalid ? '-error' : open ? '-active' : ''}.svg`}
                   width={24}
                   height={24}
                   alt=""
